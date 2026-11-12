@@ -2,6 +2,8 @@
 
 A [Sine](https://github.com/CosmoCreeper/Sine) mod for [Zen Browser](https://zen-browser.app) that turns Glance into a panel you can move and resize, while the page behind it stays fully visible.
 
+![Floating Glance demo](assets/demo.gif)
+
 Useful when you work from an Essential tab: open a link in Glance, push the panel aside, and keep reading the page underneath.
 
 ## Features

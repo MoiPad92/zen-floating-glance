@@ -8,6 +8,7 @@
   "createdAt": "2026-11-12",
   "updatedAt": "2026-11-12",
   "readme": "https://raw.githubusercontent.com/MoiPad92/zen-floating-glance/main/README.md",
+  "image": "https://raw.githubusercontent.com/MoiPad92/zen-floating-glance/main/assets/demo.gif",
   "style": {
     "chrome": "chrome.css"
   },
@@ -16,9 +17,17 @@
     "js/floating-glance.uc.mjs": {
       "name": "Floating Glance",
       "description": "Drag and resize handles for Glance, plus the keyboard shortcut.",
-      "include": ["chrome://browser/content/browser.xhtml"]
+      "include": [
+        "chrome://browser/content/browser.xhtml"
+      ]
     }
   },
-  "tags": ["glance", "chrome", "productivity"],
-  "fork": ["zen"]
+  "tags": [
+    "glance",
+    "chrome",
+    "productivity"
+  ],
+  "fork": [
+    "zen"
+  ]
 }
