@@ -1,0 +1,26 @@
+[
+  {
+    "type": "string",
+    "property": "floating-glance.shortcut",
+    "label": "Keyboard shortcut to open or close Glance",
+    "defaultValue": "Ctrl+Alt+G",
+    "placeholder": "e.g. Ctrl+Alt+G"
+  },
+  {
+    "type": "string",
+    "property": "floating-glance.url",
+    "label": "Page the shortcut opens (empty: your default search engine)",
+    "defaultValue": "",
+    "placeholder": "e.g. https://www.google.com"
+  },
+  {
+    "type": "checkbox",
+    "property": "floating-glance.dim-background",
+    "label": "Dim the page behind Glance (Zen's default look)"
+  },
+  {
+    "type": "checkbox",
+    "property": "floating-glance.centered",
+    "label": "Open Glance centered instead of docked to the right"
+  }
+]

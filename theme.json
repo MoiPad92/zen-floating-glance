@@ -1,0 +1,24 @@
+{
+  "id": "floating-glance",
+  "homepage": "https://github.com/MoiPad92/zen-floating-glance",
+  "author": "MoiPad92",
+  "name": "Floating Glance",
+  "description": "Move and resize the Glance panel, keep the page behind it visible, and open it with a keyboard shortcut.",
+  "version": "1.0.0",
+  "createdAt": "2026-11-12",
+  "updatedAt": "2026-11-12",
+  "readme": "https://raw.githubusercontent.com/MoiPad92/zen-floating-glance/main/README.md",
+  "style": {
+    "chrome": "chrome.css"
+  },
+  "preferences": "preferences.json",
+  "scripts": {
+    "js/floating-glance.uc.mjs": {
+      "name": "Floating Glance",
+      "description": "Drag and resize handles for Glance, plus the keyboard shortcut.",
+      "include": ["chrome://browser/content/browser.xhtml"]
+    }
+  },
+  "tags": ["glance", "chrome", "productivity"],
+  "fork": ["zen"]
+}
