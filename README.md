@@ -12,7 +12,7 @@ Useful when you work from an Essential tab: open a link in Glance, push the pane
 - **Resize** it from the square in its bottom-left corner.
 - **Double-click** the bar to put it back in its original place.
 - The position and size are **remembered** for the next Glance.
-- **Clicking outside does not close it**: the panel stays open until you use its own close button (or the shortcut).
+- **Clicking outside does not close it**, and neither does Escape: the panel stays open until you use its own close button (or the shortcut).
 - The page behind Glance is **no longer dimmed or shrunk**.
 - **Keyboard shortcut** (`Ctrl+Alt+G` by default) to open Glance on your search engine, or close it.
 

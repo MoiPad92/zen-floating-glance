@@ -8,7 +8,8 @@
 // finishes its animation.
 //
 // The panel behaves like a floating window: clicking outside it does not
-// close it. Only the close button (or the shortcut) does.
+// close it, and neither does Escape. Only the close button (or the shortcut)
+// does.
 
 const PREF = "floating-glance.";
 const OVERLAY = ".browserSidebarContainer.zen-glance-overlay";
@@ -202,6 +203,16 @@ function init() {
     },
     true
   );
+
+  // Escape is bound by Zen's Glance actor (ZenGlanceChild), which asks the
+  // parent to close the panel. That actor is the only caller that passes
+  // `hasFocused`, so ignoring that shape keeps the close button, the shortcut
+  // and real tab closes working while Escape stops closing the panel.
+  const closeGlance = gZenGlanceManager.closeGlance.bind(gZenGlanceManager);
+  gZenGlanceManager.closeGlance = (options = {}) => {
+    if ("hasFocused" in options) return;
+    return closeGlance(options);
+  };
 
   new MutationObserver(() => {
     const panel = document.querySelector(PANEL);
