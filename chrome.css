@@ -11,6 +11,18 @@
   }
 }
 
+/* The overlay spans the whole tab area, so it would swallow every click and
+ * wheel meant for the page behind. Let them pass through, and keep the panel
+ * (and its buttons) interactive on top. */
+.browserSidebarContainer.zen-glance-overlay {
+  pointer-events: none !important;
+}
+
+.browserSidebarContainer.zen-glance-overlay
+  .browserContainer[has-finished-animation="true"] {
+  pointer-events: auto !important;
+}
+
 /* The script drives the size through these variables. A plain inline
  * width/height loses against the !important rules below (user-origin
  * important beats inline important), so the value travels through a custom
