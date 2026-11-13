@@ -6,7 +6,7 @@
   "description": "Move and resize the Glance panel, keep the page behind it visible, and open it with a keyboard shortcut.",
   "version": "1.0.0",
   "createdAt": "2026-11-12",
-  "updatedAt": "2026-11-12",
+  "updatedAt": "2026-11-13",
   "readme": "https://raw.githubusercontent.com/MoiPad92/zen-floating-glance/main/README.md",
   "image": "https://raw.githubusercontent.com/MoiPad92/zen-floating-glance/main/assets/demo.gif",
   "style": {

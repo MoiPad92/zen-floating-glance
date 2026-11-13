@@ -2,13 +2,16 @@
 //
 // Zen keeps the finished Glance panel in place with `margin: auto` and
 // `transform: none !important` (src/zen/glance/zen-glance.css), so the panel
-// is moved with the separate CSS `translate` property and sized with inline
-// width/height. Zen resets the inline width on every opening, so the saved
-// geometry is applied again each time the panel finishes its animation.
+// is moved with the separate CSS `translate` property and sized through custom
+// properties that chrome.css reads. Zen resets the inline width on every
+// opening, so the saved geometry is applied again each time the panel
+// finishes its animation.
 //
-// Glance stays modal: a click outside the panel still closes it.
+// The panel behaves like a floating window: clicking outside it does not
+// close it. Only the close button (or the shortcut) does.
 
 const PREF = "floating-glance.";
+const OVERLAY = ".browserSidebarContainer.zen-glance-overlay";
 const PANEL =
   '.browserSidebarContainer.zen-glance-overlay .browserContainer[has-finished-animation="true"]';
 const MIN_WIDTH = 320;
@@ -34,10 +37,13 @@ const saveGeometry = (g) => Services.prefs.setStringPref(PREF + "geometry", JSON
 
 const setImportant = (el, prop, value) => el.style.setProperty(prop, value, "important");
 
+// The size goes through custom properties because chrome.css declares the
+// width and height with !important in the user origin (userChrome), which
+// beats an inline !important. A variable set inline still feeds that rule.
 function applyGeometry(panel, g) {
   if (!g) return;
-  setImportant(panel, "width", `${g.w}px`);
-  setImportant(panel, "height", `${g.h}px`);
+  panel.style.setProperty("--floating-glance-width", `${g.w}px`);
+  panel.style.setProperty("--floating-glance-height", `${g.h}px`);
   setImportant(panel, "translate", `${g.x}px ${g.y}px`);
 }
 
@@ -117,7 +123,16 @@ function decorate(panel) {
   mover.addEventListener("dblclick", (ev) => {
     ev.stopPropagation();
     Services.prefs.clearUserPref(PREF + "geometry");
-    for (const prop of ["width", "height", "translate"]) panel.style.removeProperty(prop);
+    // width/height/translate are legacy inline properties from older versions.
+    for (const prop of [
+      "--floating-glance-width",
+      "--floating-glance-height",
+      "width",
+      "height",
+      "translate",
+    ]) {
+      panel.style.removeProperty(prop);
+    }
   });
 
   applyGeometry(panel, readGeometry());
@@ -175,6 +190,18 @@ async function toggleGlance() {
 function init() {
   if (!window.gZenGlanceManager || !window.gBrowser?.tabpanels) return;
   addStyles();
+
+  // Zen closes Glance when a click lands on the overlay itself. Stop that
+  // click before it reaches Zen's listener, so the panel stays open until its
+  // own close button (or the shortcut) is used.
+  gBrowser.tabpanels.addEventListener(
+    "click",
+    (ev) => {
+      const overlay = document.querySelector(OVERLAY);
+      if (overlay && ev.target === overlay) ev.stopImmediatePropagation();
+    },
+    true
+  );
 
   new MutationObserver(() => {
     const panel = document.querySelector(PANEL);

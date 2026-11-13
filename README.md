@@ -12,6 +12,7 @@ Useful when you work from an Essential tab: open a link in Glance, push the pane
 - **Resize** it from the square in its bottom-left corner.
 - **Double-click** the bar to put it back in its original place.
 - The position and size are **remembered** for the next Glance.
+- **Clicking outside does not close it**: the panel stays open until you use its own close button (or the shortcut).
 - The page behind Glance is **no longer dimmed or shrunk**.
 - **Keyboard shortcut** (`Ctrl+Alt+G` by default) to open Glance on your search engine, or close it.
 
@@ -28,7 +29,7 @@ In Zen's settings, under the Sine mods section:
 
 ## Limitations
 
-- Glance is still modal: **clicking outside the panel closes it**, as in stock Zen. The page behind can be read but not clicked while Glance is open.
+- The page behind Glance can be read but not clicked while Glance is open. Close it with its own close button or the keyboard shortcut.
 - The mod relies on Glance's internal structure. A Zen update that changes Glance can break it until the mod is updated. Tested on Zen 1.24.2b.
 
 ## Installation

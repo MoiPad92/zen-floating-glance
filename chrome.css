@@ -11,12 +11,21 @@
   }
 }
 
+/* The script drives the size through these variables. A plain inline
+ * width/height loses against the !important rules below (user-origin
+ * important beats inline important), so the value travels through a custom
+ * property instead. */
+.browserSidebarContainer.zen-glance-overlay .browserContainer[has-finished-animation="true"] {
+  width: var(--floating-glance-width, 80%) !important;
+  height: var(--floating-glance-height, 100%) !important;
+}
+
 /* A narrower panel docked to the right, so the page behind it shows. The
  * script then moves it with `translate` and resizes it from this place. */
 @media not (-moz-bool-pref: "floating-glance.centered") {
   .browserSidebarContainer.zen-glance-overlay .browserContainer[has-finished-animation="true"] {
-    width: 45% !important;
-    height: 94% !important;
+    width: var(--floating-glance-width, 45%) !important;
+    height: var(--floating-glance-height, 94%) !important;
     margin: auto 1% auto auto !important;
   }
 
